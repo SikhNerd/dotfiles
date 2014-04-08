@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/Users/munteksingh/.ssh'
+let g:netrw_dirhist_2='/Users/munteksingh/code/gitolite-admin/conf'
+let g:netrw_dirhist_3='/Users/munteksingh/dotfiles/vim/.vim/undo'
