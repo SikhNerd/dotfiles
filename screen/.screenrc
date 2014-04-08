@@ -1,0 +1,27 @@
+termcapinfo xterm* ti@:te@
+startup_message off
+vbell off
+
+autodetach on
+altscreen on
+defscrollback 20000
+defutf8 on
+nonblock on
+
+bindkey -k F1 prev
+bindkey -k F2 next
+bindkey -k k7 detach
+bindkey -k k8 kill
+bindkey -k k; screen
+bindkey -k k9 title
+
+caption always "%{= kw}%{B} %= %{=kw} [ %{c}F7 - Detach %{B}] [ %{c}F8 - Kill
+%{B}] [ %{c}F9 - Rename %{B}] [ %{c}F10 - New %{B}] [ %{c}F11 - Prev %{B}] [
+%%{c}F12 - Next %{B}] %="
+
+
+hardstatus alwayslastline
+hardstatus alwayslastline "%{= kw}%{B}[%= %{w}%{=kw}%?%-Lw%?%{r}(%{B}%n
+%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%=%{B}][%{B} %Y.%m.%d %C %A %{B}]%{w}"
+
+screen
