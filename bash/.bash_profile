@@ -7,6 +7,9 @@ alias vt="reset;ssh -t vc34 'tmux -2 a'"
 #most used ls alias
 alias ll="ls -hal"
 
+#ls alias with octal permissions
+alias ols="ls -hal | awk '{k=0;for(i=0;i<=8;i++)k+=((substr(\$1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf(\" %0o \",k);print}'"
+
 #Attach to existing tmux session, else create one
 alias tmux='tmux -2u a || tmux -2u'
 
