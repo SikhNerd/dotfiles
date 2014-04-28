@@ -1,5 +1,39 @@
+###### Bash Settings ######
+
 #Simple prompt setup and coloring
 PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
+
+# Entering a directory name as a bare word will change into that directory
+shopt -s autocd
+
+# Automatically correct off-by-one typing mistakes when changing directories
+shopt -s cdspell
+
+# Make Bash wrap text properly if the terminal size changes
+shopt -s checkwinsize
+
+# Store multi-line commands in shell history as one-liners for easy editing
+shopt -s cmdhist
+
+# Correct off-by-one typing mistakes when tab-completing directories
+shopt -s dirspell
+
+# Allow aliases to be expanded even in non-interactive sessions
+shopt -s expand_aliases
+
+# Don't clobber other sessions' changes to global history when exiting
+shopt -s histappend
+
+# Don't try to complete on empty lines
+shopt -s no_empty_cmd_completion
+
+# Globs won't consider case
+shopt -s nocaseglob
+
+# Globs will consider hidden files, too
+shopt -s dotglob
+
+###### Alias' ######
 
 #Login to vps and reattach to tmux session
 alias vt="reset;ssh -t vc34 'tmux -2 a'"
@@ -15,6 +49,8 @@ alias tmux='tmux -2u a || tmux -2u'
 
 #Pretty ping google dns
 alias pg="/usr/local/bin/pping 8.8.8.8"
+
+###### Environment Variables/Settings ######
 
 #Vim should always be default
 export EDITOR="vim"
