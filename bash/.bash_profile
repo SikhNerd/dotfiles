@@ -52,7 +52,7 @@ alias ll="ls -hal"
 alias ols="ls -hal | awk '{k=0;for(i=0;i<=8;i++)k+=((substr(\$1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf(\" %0o \",k);print}'"
 
 #Attach to existing tmux session, else create one
-alias tmux='tmux -2u a || tmux -2u'
+alias tmu='tmux -2u a || tmux -2u'
 
 #Pretty ping google dns
 alias pg="/usr/local/bin/pping 8.8.8.8"
