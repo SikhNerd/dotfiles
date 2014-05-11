@@ -90,6 +90,9 @@ set undofile
 set undolevels=10000
 set undoreload=100000
 
+"Create all swp files in one spot
+set dir=~/.vim/undo
+
 "Set leader to comman
 let mapleader = ","
 
