@@ -1,0 +1,15 @@
+pane	0	1	:bash	0	: 	1	:/Users/munteksingh/Documents/code	1	bash	:
+pane	0	2	:bash	0	: 	1	:/Users/munteksingh/code/gbill-gbadmin	1	bash	:
+pane	0	3	:bash	0	: 	1	:/Users/munteksingh/code	1	bash	:
+pane	0	4	:bash	0	: 	1	:/Users/munteksingh/code/addon-migration	1	bash	:
+pane	0	5	:bash	0	: 	1	:/Users/munteksingh/Downloads	1	bash	:
+pane	0	6	:less	0	:-	1	:/Users/munteksingh/Downloads	1	less	:less lolol
+pane	0	7	:[tmux]	1	:*	1	:/Users/munteksingh/dotfiles	1	bash	:
+window	0	1	0	: 	ae9d,204x50,0,0,0
+window	0	2	0	: 	ae9e,204x50,0,0,1
+window	0	3	0	: 	aea0,204x50,0,0,3
+window	0	4	0	: 	aea1,204x50,0,0,4
+window	0	5	0	: 	aea2,204x50,0,0,5
+window	0	6	0	:-	aea3,204x50,0,0,6
+window	0	7	1	:*	aea4,204x50,0,0,7
+state	0	
