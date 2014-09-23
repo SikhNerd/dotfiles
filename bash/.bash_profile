@@ -77,3 +77,8 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
 fi
 source `brew --repository`/Library/Contributions/brew_bash_completion.sh
 
+
+#Go Exports
+export PATH=$PATH:$GOPATH/bin
+export GOPATH=$HOME/go
+export PATH=$PATH:/usr/local/opt/go/libexec/bin
