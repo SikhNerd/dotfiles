@@ -93,7 +93,7 @@ set undoreload=100000
 "Create all swp files in one spot
 set dir=~/.vim/undo
 
-"Set leader to comman
+"Set leader to comma
 let mapleader = ","
 
 "case insensitive search by default
