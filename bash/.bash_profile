@@ -1,14 +1,6 @@
 ###### Bash Settings ######
 
-#If Powerline is Installed, use it, else use my old PS1
-powerline_path=$(python -c 'import pkgutil; print pkgutil.get_loader("powerline").filename' 2>/dev/null)
-
-if [[ "$powerline_path" != "" ]]; then
-    source ${powerline_path}/bindings/bash/powerline.sh
-else
-    PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
-    # Setup your normal PS1 here.
-fi
+PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
 
 # Entering a directory name as a bare word will change into that directory
 shopt -s autocd
