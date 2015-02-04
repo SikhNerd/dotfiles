@@ -52,6 +52,9 @@ alias pg="/usr/local/bin/pping 8.8.8.8"
 #Start Firefox profile manager
 alias ffp="/Applications/Firefox.app/Contents/MacOS/firefox-bin -p"
 
+#SSH to Skynet
+alias sn='ssh -t zug ssh skynet'
+
 ###### Environment Variables/Settings ######
 
 #Vim should always be default
