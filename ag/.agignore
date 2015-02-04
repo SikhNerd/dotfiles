@@ -1,3 +1,4 @@
 *.sql
 *.csv
 *.xml
+*.min.js
