@@ -1,5 +1,7 @@
 # Tmux Resurrect
 
+[![Build Status](https://travis-ci.org/tmux-plugins/tmux-resurrect.png?branch=master)](https://travis-ci.org/tmux-plugins/tmux-resurrect)
+
 Restore `tmux` environment after a system restart.
 
 Tmux is great, except when you have to restart the computer. You lose all the
@@ -12,7 +14,10 @@ projects.
 can be completely restored after a system restart (or when you feel like it).
 No configuration is required. You should feel like you never quit tmux.
 
-It even (optionally) [restores vim sessions](#restoring-vim-sessions)!
+It even (optionally) [restores vim and neovim sessions](#restoring-vim-and-neovim-sessions)!
+
+Automatic restoring and continuous saving of tmux env is also possible with
+[tmux-continuum](https://github.com/tmux-plugins/tmux-continuum) plugin.
 
 ### Screencast
 
@@ -20,8 +25,13 @@ It even (optionally) [restores vim sessions](#restoring-vim-sessions)!
 
 ### Key bindings
 
-- `prefix + Alt-s` - save
-- `prefix + Alt-r` - restore
+- `prefix + Ctrl-s` - save
+- `prefix + Ctrl-r` - restore
+
+For custom key bindings, add to `.tmux.conf`:
+
+    set -g @resurrect-save 'S'
+    set -g @resurrect-restore 'R'
 
 ### About
 
@@ -30,26 +40,35 @@ This plugin goes to great lengths to save and restore all the details from your
 
 - all sessions, windows, panes and their order
 - current working directory for each pane
-- **exact pane layouts** within windows
+- **exact pane layouts** within windows (even when zoomed)
 - active and alternative session
 - active and alternative window for each session
 - windows with focus
 - active pane for each window
+- "grouped sessions" (useful feature when using tmux with multiple monitors)
 - programs running within a pane! More details in the
   [configuration section](#configuration).
-- restoring vim sessions (optional). More details in
-  [restoring vim sessions](#restoring-vim-sessions).
+- restoring vim/neovim sessions (optional). More details in
+  [restoring vim and neovim sessions](#restoring-vim-and-neovim-sessions).
+- restoring bash history (optional, \*experimental*). More details in
+  [restoring bash history](#restoring-bash-history-experimental).
 
-Requirements / dependencies: `tmux 1.9` or higher, `pgrep`
+Requirements / dependencies: `tmux 1.9` or higher, `bash`.
+
+`tmux-resurrect` is idempotent! It will not try to restore panes or windows that
+already exist.<br/>
+The single exception to this is when tmux is started with only 1 pane in order
+to restore previous tmux env. In this case only will this single pane be
+overwritten.
 
 ### Installation with [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm) (recommended)
 
 Add plugin to the list of TPM plugins in `.tmux.conf`:
 
-    set -g @tpm_plugins "           \
+    set -g @tpm_plugins '           \
       tmux-plugins/tpm              \
       tmux-plugins/tmux-resurrect   \
-    "
+    '
 
 Hit `prefix + I` to fetch the plugin and source it. You should now be able to
 use the plugin.
@@ -76,8 +95,7 @@ You should now be able to use the plugin.
 Configuration is not required, but it enables extra features.
 
 Only a conservative list of programs is restored by default:<br/>
-`vi vim emacs man less more tail top htop irssi`.
-Open a GitHub issue if you think some other program should be on the default list.
+`vi vim nvim emacs man less more tail top htop irssi`.
 
 - Restore additional programs with the setting in `.tmux.conf`:
 
@@ -91,6 +109,11 @@ Open a GitHub issue if you think some other program should be on the default lis
 
         set -g @resurrect-processes 'irb pry "~rails server" "~rails console"'
 
+- Use `->` to specify a command to be used when restoring a program (useful if
+  the default restore command fails ):
+
+        set -g @resurrect-processes 'some_program "grunt->grunt development"'
+
 - Don't restore any programs:
 
         set -g @resurrect-processes 'false'
@@ -99,15 +122,39 @@ Open a GitHub issue if you think some other program should be on the default lis
 
         set -g @resurrect-processes ':all:'
 
-#### Restoring vim sessions
+#### Restoring vim and neovim sessions
 
-- save vim sessions. I recommend [tpope/vim-obsession](https://github.com/tpope/vim-obsession).
+- save vim/neovim sessions. I recommend
+  [tpope/vim-obsession](https://github.com/tpope/vim-obsession) (as almost every
+  plugin, it works for both vim and neovim).
 - in `.tmux.conf`:
 
-        set -g @resurrect-strategy-vim "session"
+        # for vim
+        set -g @resurrect-strategy-vim 'session'
+        # for neovim
+        set -g @resurrect-strategy-nvim 'session'
 
-`tmux-resurrect` will now restore vim sessions if `Sessions.vim` file is
-present.
+`tmux-resurrect` will now restore vim and neovim sessions if `Sessions.vim` file
+is present.
+
+#### Resurrect save dir
+
+By default Tmux environment is saved to a file in `~/.tmux/resurrect` dir.
+Change this with:
+
+    set -g @resurrect-dir '/some/path'
+
+#### Restoring bash history (experimental)
+
+In `.tmux.conf`:
+
+    set -g @resurrect-save-bash-history 'on'
+
+Bash `history` for individual panes will now be saved and restored. Due to
+technical limitations, this only works for panes which have no program running in
+foreground when saving. `tmux-resurrect` will send history write command
+to each such pane. To prevent these commands from being added to history themselves,
+add `HISTCONTROL=ignoreboth` to your `.bashrc` (this is set by default in Ubuntu).
 
 ### Other goodies
 
@@ -117,6 +164,11 @@ present.
   highlighted text to system clipboard
 - [tmux-open](https://github.com/tmux-plugins/tmux-open) - a plugin for quickly
   opening highlighted file or a url
+- [tmux-continuum](https://github.com/tmux-plugins/tmux-continuum) - automatic
+  restoring and continuous saving of tmux env
+
+You might want to follow [@brunosutic](https://twitter.com/brunosutic) on
+twitter if you want to hear about new tmux plugins or feature updates.
 
 ### Reporting bugs and contributing
 
@@ -126,7 +178,7 @@ Both contributing and bug reports are welcome. Please check out
 ### Credits
 
 [Mislav Marohnić](https://github.com/mislav) - the idea for the plugin came from his
-[tmux-session script](https://github.com/mislav/dotfiles/blob/master/bin/tmux-session).
+[tmux-session script](https://github.com/mislav/dotfiles/blob/2036b5e03fb430bbcbc340689d63328abaa28876/bin/tmux-session).
 
 ### Other
 

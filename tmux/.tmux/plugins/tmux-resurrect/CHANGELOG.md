@@ -1,7 +1,69 @@
 # Changelog
 
 ### master
+
+### v2.4.0, 2015-02-23
+- add "tmux-test"
+- add test for "resurrect save" feature
+- add test for "resurrect restore" feature
+- make the tests work and pass on travis
+- add travis badge to the readme
+
+### v2.3.0, 2015-02-12
+- Improve fetching proper window_layout for zoomed windows. In order to fetch
+  proper value, window has to get unzoomed. This is now done faster so that
+  "unzoom,fetch value,zoom" cycle is almost unnoticable to the user.
+
+### v2.2.0, 2015-02-12
+- bugfix: zoomed windows related regression
+- export save and restore script paths so that 'tmux-resurrect-save' plugin can
+  use them
+- enable "quiet" saving (used by 'tmux-resurrect-save' plugin)
+
+### v2.1.0, 2015-02-12
+- if restore is started when there's only **1 pane in the whole tmux server**,
+  assume the users wants the "full restore" and overrwrite that pane.
+
+### v2.0.0, 2015-02-10
+- add link to the wiki page for "first pane/window issue" to the README as well
+  as other tweaks
+- save and restore grouped sessions (used with multi-monitor workflow)
+- save and restore active and alternate windows in grouped sessions
+- if there are no grouped sessions, do not output empty line to "last" file
+- restore active and alternate windows only if they are present in the "last" file
+- refactoring: prefer using variable with tab character
+- remove deprecated `M-s` and `M-r` key bindings (breaking change)
+
+### v1.5.0, 2014-11-09
+- add support for restoring neovim sessions
+
+### v1.4.0, 2014-10-25
+- plugin now uses strategies when fetching pane full command. Implemented
+  'default' strategy.
+- save command strategy: 'pgrep'. It's here only if fallback is needed.
+- save command strategy: 'gdb'
+- rename default strategy name to 'ps'
+- create `expect` script that can fully restore tmux environment
+- fix default save command strategy `ps` command flags. Flags are different for
+  FreeBSD.
+- add bash history saving and restoring (@rburny)
+- preserving layout of zoomed windows across restores (@Azrael3000)
+
+### v1.3.0, 2014-09-20
+- remove dependency on `pgrep` command. Use `ps` for fetching process names.
+
+### v1.2.1, 2014-09-02
+- tweak 'new_pane' creation strategy to fix #36
+- when running multiple tmux server and for a large number of panes (120 +) when
+  doing a restore, some panes might not be created. When that is the case also
+  don't restore programs for those panes.
+
+### v1.2.0, 2014-09-01
+- new feature: inline strategies when restoring a program
+
+### v1.1.0, 2014-08-31
 - bugfix: sourcing `variables.sh` file in save script
+- add `Ctrl` key mappings, deprecate `Alt` keys mappings.
 
 ### v1.0.0, 2014-08-30
 - show spinner during the save process
