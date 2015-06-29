@@ -48,6 +48,8 @@ pane_format() {
 	format+="#{pane_current_command}"
 	format+="${delimiter}"
 	format+="#{pane_pid}"
+	format+="${delimiter}"
+	format+="#{history_size}"
 	echo "$format"
 }
 
@@ -106,6 +108,16 @@ pane_full_command() {
 	local strategy_file="$(_save_command_strategy_file)"
 	# execute strategy script to get pane full command
 	$strategy_file "$pane_pid"
+}
+
+capture_pane_contents() {
+	local pane_id="$1"
+	local start_line="-$2"
+	local pane_contents_area="$3"
+	if [ "$pane_contents_area" = "visible" ]; then
+		start_line="0"
+	fi
+	tmux capture-pane -epJ -S "$start_line" -t "$pane_id" > "$(resurrect_pane_file "$pane_id")"
 }
 
 save_shell_history() {
@@ -167,7 +179,7 @@ fetch_and_dump_grouped_sessions(){
 dump_panes() {
 	local full_command
 	dump_panes_raw |
-		while IFS=$d read line_type session_name window_number window_name window_active window_flags pane_index dir pane_active pane_command pane_pid; do
+		while IFS=$d read line_type session_name window_number window_name window_active window_flags pane_index dir pane_active pane_command pane_pid history_size; do
 			# not saving panes from grouped sessions
 			if is_session_grouped "$session_name"; then
 				continue
@@ -201,6 +213,14 @@ dump_state() {
 	tmux display-message -p "$(state_format)"
 }
 
+dump_pane_contents() {
+	local pane_contents_area="$(get_tmux_option "$pane_contents_area_option" "$default_pane_contents_area")"
+	dump_panes_raw |
+		while IFS=$d read line_type session_name window_number window_name window_active window_flags pane_index dir pane_active pane_command pane_pid history_size; do
+			capture_pane_contents "${session_name}:${window_number}.${pane_index}" "$history_size" "$pane_contents_area"
+		done
+}
+
 dump_bash_history() {
 	dump_panes |
 		while IFS=$d read line_type session_name window_number window_name window_active window_flags pane_index dir pane_active pane_command full_command; do
@@ -216,6 +236,9 @@ save_all() {
 	dump_windows >> "$resurrect_file_path"
 	dump_state   >> "$resurrect_file_path"
 	ln -fs "$(basename "$resurrect_file_path")" "$(last_resurrect_file)"
+	if capture_pane_contents_option_on; then
+		dump_pane_contents
+	fi
 	if save_bash_history_option_on; then
 		dump_bash_history
 	fi
