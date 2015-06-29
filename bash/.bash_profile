@@ -52,9 +52,6 @@ alias pg="/usr/local/bin/pping 8.8.8.8"
 #Start Firefox profile manager
 alias ffp="/Applications/Firefox.app/Contents/MacOS/firefox-bin -p"
 
-#SSH to Skynet
-alias sn='ssh -t zug ssh skynet'
-
 #Set git proxy to localhost
 alias gps="git config --global http.proxy 'socks5://127.0.0.1:8080'"
 
