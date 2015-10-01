@@ -132,13 +132,19 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
-"Attempt to remap F19 to insert cause mac doesn't have insert key
-nnoremap <F19> i
-inoremap <F19> <Esc>l
-
 "set python syntax hiliting options
 let python_version_2 = 1
 let python_highlight_all =1
 
 "Make md = markdown hiliting
 au BufRead,BufNewFile *.md set filetype=markdown
+
+" Syntastic recomended defaults
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
