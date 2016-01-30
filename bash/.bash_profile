@@ -99,6 +99,7 @@ source '/Users/ms/google-cloud-sdk/completion.bash.inc'
 # local rbenv setup
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
+# Convert mov file to gif with decent quality
 movtogif(){
     ffmpeg -i "$1" -vf scale=800:-1 -r 10 -f image2pipe -vcodec ppm - |\
     convert -delay 5 -layers Optimize -loop 0 - "$2"
