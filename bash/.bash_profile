@@ -58,6 +58,15 @@ alias gps="git config --global http.proxy 'socks5://127.0.0.1:8080'"
 #unset git proxy
 alias gpu="git config --global --unset http.proxy"
 
+#temp sysadmin-1
+alias sa1='gcloud compute --project "high-plating-825" ssh --zone "us-central1-a" "munteksingh@sys-admin-1"'
+
+# Start an instance of chrome using a local proxy
+alias chpxy='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir="$HOME/chrome-proxy-profile" --proxy-server="socks5://localhost:1080"'
+
+# SSH proxy to sa1
+alias sa1p='gcloud compute --project "high-plating-825" ssh --zone "us-central1-a" "munteksingh@sys-admin-1" --ssh-flag="-D" --ssh-flag="1080" --ssh-flag="-N"'
+
 ###### Environment Variables/Settings ######
 
 #Vim should always be default
@@ -80,3 +89,17 @@ source `brew --repository`/Library/Contributions/brew_bash_completion.sh
 export PATH=$PATH:$GOPATH/bin
 export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
+
+# The next line updates PATH for the Google Cloud SDK.
+source '/Users/ms/google-cloud-sdk/path.bash.inc'
+
+# The next line enables shell command completion for gcloud.
+source '/Users/ms/google-cloud-sdk/completion.bash.inc'
+
+# local rbenv setup
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+movtogif(){
+    ffmpeg -i "$1" -vf scale=800:-1 -r 10 -f image2pipe -vcodec ppm - |\
+    convert -delay 5 -layers Optimize -loop 0 - "$2"
+}
