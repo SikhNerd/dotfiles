@@ -63,11 +63,12 @@ alias gpu="git config --global --unset http.proxy"
 alias sa1='gcloud compute --project "high-plating-825" ssh --zone "us-central1-a" "munteksingh@sys-admin-1"'
 
 # Start an instance of chrome using a local proxy
-alias chpxy='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir="$HOME/chrome-proxy-profile" --proxy-server="socks5://localhost:1080"'
+alias chpxy='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir="$HOME/chrome-proxy-profile" --proxy-server="socks5://localhost:9080"'
 
 # SSH proxy to sa1
 alias sa1p='gcloud compute --project "high-plating-825" ssh --zone "us-central1-a" "munteksingh@sys-admin-1" --ssh-flag="-D" --ssh-flag="1080" --ssh-flag="-N"'
 
+alias ppv='/opt/puppetlabs/bin/puppet parser validate'
 ###### Environment Variables/Settings ######
 
 #Vim should always be default
