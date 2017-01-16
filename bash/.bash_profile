@@ -35,7 +35,8 @@ shopt -s dotglob
 ###### Alias' ######
 
 #Login to vps and reattach to tmux session
-alias vt="reset;ssh -t vc34 'tmux -2 a'"
+alias vt="reset;ssh -t vc3 'tmux -2 a'"
+alias bs="reset;ssh -t bs 'tmux -2 a'"
 
 #most used ls alias
 alias ll="ls -hal"
