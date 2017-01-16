@@ -84,19 +84,11 @@ export LESS='-R'
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
-source `brew --repository`/Library/Contributions/brew_bash_completion.sh
-
 
 #Go Exports
 export PATH=$PATH:$GOPATH/bin
 export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
-
-# The next line updates PATH for the Google Cloud SDK.
-source '/Users/ms/google-cloud-sdk/path.bash.inc'
-
-# The next line enables shell command completion for gcloud.
-source '/Users/ms/google-cloud-sdk/completion.bash.inc'
 
 # local rbenv setup
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
