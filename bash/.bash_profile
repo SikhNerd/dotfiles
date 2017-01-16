@@ -23,6 +23,13 @@ shopt -s expand_aliases
 # Don't clobber other sessions' changes to global history when exiting
 shopt -s histappend
 
+# History Options
+export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
+export HISTSIZE=100000                   # big big history
+export HISTFILESIZE=100000               # big big history
+export HISTTIMEFORMAT='%F %T ' # Add timestamps to every line
+
+
 # Don't try to complete on empty lines
 shopt -s no_empty_cmd_completion
 
