@@ -106,3 +106,13 @@ movtogif(){
     ffmpeg -i "$1" -vf scale=800:-1 -r 10 -f image2pipe -vcodec ppm - |\
     convert -delay 5 -layers Optimize -loop 0 - "$2"
 }
+
+# add adb to my path
+export PATH=$PATH:/Users/ms/Library/Android/sdk/platform-tools
+
+# Azure cli autocomplete
+source ~/.azure.completion.sh
+alias ssrq='sshuttle -r admin@sikhnerd.myqnapcloud.com 192.168.1.10'
+alias ssrc='sshuttle -r bs 10.0.0.0/8'
+alias cmse='gdate +%s000'
+source $HOME/.cargo/env
