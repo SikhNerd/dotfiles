@@ -107,4 +107,6 @@ source ~/.azure.completion.sh
 alias ssrq='sshuttle -r admin@sikhnerd.myqnapcloud.com 192.168.1.10'
 alias ssrc='sshuttle -r bs 10.0.0.0/8'
 alias cmse='gdate +%s000'
+
+# Rust Cargo
 source $HOME/.cargo/env
