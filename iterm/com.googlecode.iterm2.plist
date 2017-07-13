@@ -64,6 +64,10 @@
 	<true/>
 	<key>HideTab</key>
 	<true/>
+	<key>HideTabCloseButton</key>
+	<true/>
+	<key>HideTabNumber</key>
+	<true/>
 	<key>HighlightTabLabels</key>
 	<true/>
 	<key>HotKeyBookmark</key>
@@ -71,11 +75,13 @@
 	<key>HotKeyTogglesWindow</key>
 	<true/>
 	<key>Hotkey</key>
-	<true/>
+	<false/>
 	<key>HotkeyChar</key>
-	<integer>96</integer>
+	<integer>0</integer>
 	<key>HotkeyCode</key>
-	<integer>50</integer>
+	<integer>0</integer>
+	<key>HotkeyMigratedFromSingleToMulti</key>
+	<true/>
 	<key>HotkeyModifiers</key>
 	<integer>524576</integer>
 	<key>IRMemory</key>
@@ -142,16 +148,18 @@
 	<string>3220 267 445 77 1920 0 1920 1058 </string>
 	<key>NSWindow Frame Preferences</key>
 	<string>269 599 606 456 0 0 1920 1057 </string>
+	<key>NSWindow Frame SUStatusFrame</key>
+	<string>-1160 696 400 129 -1920 0 1920 1058 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>290 117 700 622 0 0 1280 777 </string>
+	<string>610 328 700 622 0 0 1920 1058 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>-1396 260 606 456 -1920 0 1920 1057 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>2528 181 918 495 1920 0 1920 1058 </string>
+	<string>228 283 796 473 0 0 1280 778 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1280 778 0 0 1280 778 </string>
+	<string>0 354 1920 704 0 0 1920 1058 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>-640 370 570 404 0 0 1280 778 </string>
+	<string>-1920 0 1920 1058 -1920 0 1920 1058 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>152 50 570 404 0 0 1920 1057 </string>
 	<key>New Bookmarks</key>
@@ -323,6 +331,8 @@
 			<key>Background Image Is Tiled</key>
 			<false/>
 			<key>Background Image Location</key>
+			<string></string>
+			<key>Badge Text</key>
 			<string></string>
 			<key>Blend</key>
 			<real>0.30000001192092896</real>
@@ -2030,10 +2040,30 @@
 			</dict>
 			<key>Guid</key>
 			<string>F8A66447-62E4-45B3-8375-BB1884A6A804</string>
+			<key>Has Hotkey</key>
+			<true/>
 			<key>Hide After Opening</key>
 			<false/>
 			<key>Horizontal Spacing</key>
 			<real>1</real>
+			<key>HotKey Characters</key>
+			<string>`</string>
+			<key>HotKey Characters Ignoring Modifiers</key>
+			<string>`</string>
+			<key>HotKey Key Code</key>
+			<integer>50</integer>
+			<key>HotKey Modifier Flags</key>
+			<integer>524576</integer>
+			<key>HotKey Window Animates</key>
+			<true/>
+			<key>HotKey Window AutoHides</key>
+			<true/>
+			<key>HotKey Window Dock Click Action</key>
+			<integer>0</integer>
+			<key>HotKey Window Floats</key>
+			<false/>
+			<key>HotKey Window Reopens On Activation</key>
+			<false/>
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Initial Text</key>
@@ -2622,7 +2652,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>F0893FE7-9762-4E2C-B35C-395C71911441</string>
 	<key>NoSyncLastTipTime</key>
-	<real>483906101.01361501</real>
+	<real>513663471.364299</real>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -2706,6 +2736,15 @@
 		<string>0063</string>
 		<string>0064</string>
 		<string>0065</string>
+		<string>0065</string>
+		<string>0064</string>
+		<string>0063</string>
+		<string>0062</string>
+		<string>0061</string>
+		<string>0060</string>
+		<string>0059</string>
+		<string>0058</string>
+		<string>0057</string>
 	</array>
 	<key>OnlyWhenMoreTabs</key>
 	<false/>
@@ -2757,14 +2796,20 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-02-01T21:59:46Z</date>
+	<date>2017-07-12T05:19:53Z</date>
 	<key>SavePasteHistory</key>
+	<true/>
+	<key>Secure Input</key>
+	<false/>
+	<key>Selection Respects Soft Boundaries</key>
 	<true/>
 	<key>Show Toolbelt</key>
 	<false/>
 	<key>ShowBookmarkName</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
+	<true/>
+	<key>ShowNewOutputIndicator</key>
 	<true/>
 	<key>ShowPaneTitles</key>
 	<true/>
@@ -2787,6 +2832,7 @@
 	<key>ToolbeltTools</key>
 	<array>
 		<string>Notes</string>
+		<string>Profiles</string>
 	</array>
 	<key>TripleClickSelectsFullWrappedLines</key>
 	<false/>
@@ -2810,9 +2856,11 @@
 	<string>/-+\~_.</string>
 	<key>findIgnoreCase_iTerm</key>
 	<true/>
+	<key>findMode_iTerm</key>
+	<integer>0</integer>
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.13</string>
+	<string>3.1.beta.5</string>
 </dict>
 </plist>
