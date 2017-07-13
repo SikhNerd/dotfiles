@@ -102,6 +102,7 @@ movtogif(){
 
 # add adb to my path
 export PATH=$PATH:/Users/ms/Library/Android/sdk/platform-tools
+export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
 
 # Azure cli autocomplete
 source ~/.azure.completion.sh
@@ -128,3 +129,5 @@ export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
 # GNU Coreutils:
 PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+
+@
