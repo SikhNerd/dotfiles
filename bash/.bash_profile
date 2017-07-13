@@ -130,4 +130,5 @@ export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
 PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
-@
+# Curl 
+export PATH="/usr/local/opt/curl/bin:$PATH"
