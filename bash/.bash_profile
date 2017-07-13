@@ -66,14 +66,8 @@ alias gps="git config --global http.proxy 'socks5://127.0.0.1:8080'"
 #unset git proxy
 alias gpu="git config --global --unset http.proxy"
 
-#temp sysadmin-1
-alias sa1='gcloud compute --project "high-plating-825" ssh --zone "us-central1-a" "munteksingh@sys-admin-1"'
-
 # Start an instance of chrome using a local proxy
 alias chpxy='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir="$HOME/chrome-proxy-profile" --proxy-server="socks5://localhost:9080"'
-
-# SSH proxy to sa1
-alias sa1p='gcloud compute --project "high-plating-825" ssh --zone "us-central1-a" "munteksingh@sys-admin-1" --ssh-flag="-D" --ssh-flag="1080" --ssh-flag="-N"'
 
 alias ppv='/opt/puppetlabs/bin/puppet parser validate'
 ###### Environment Variables/Settings ######
@@ -111,9 +105,26 @@ export PATH=$PATH:/Users/ms/Library/Android/sdk/platform-tools
 
 # Azure cli autocomplete
 source ~/.azure.completion.sh
+
+# Tunnells
 alias ssrq='sshuttle -r admin@sikhnerd.myqnapcloud.com 192.168.1.10'
 alias ssrc='sshuttle -r bs 10.0.0.0/8'
 alias cmse='gdate +%s000'
 
 # Rust Cargo
 source $HOME/.cargo/env
+
+source /Users/ms/dotfiles/bash/bashline.sh
+
+# The next line updates PATH for the Google Cloud SDK.
+#if [ -f '/Users/ms/google-cloud-sdk/path.bash.inc' ]; then source '/Users/ms/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+#if [ -f '/Users/ms/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/ms/google-cloud-sdk/completion.bash.inc'; fi
+
+# Set Default java to 7
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
+
+# GNU Coreutils:
+PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
