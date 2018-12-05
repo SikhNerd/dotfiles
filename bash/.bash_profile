@@ -60,11 +60,8 @@ alias pg="/usr/local/bin/pping 8.8.8.8"
 #Start Firefox profile manager
 alias ffp="/Applications/Firefox.app/Contents/MacOS/firefox-bin -p"
 
-#Set git proxy to localhost
-alias gps="git config --global http.proxy 'socks5://127.0.0.1:8080'"
-
-#unset git proxy
-alias gpu="git config --global --unset http.proxy"
+#Status
+alias gs="git status"
 
 # Start an instance of chrome using a local proxy
 alias chpxy='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir="$HOME/chrome-proxy-profile" --proxy-server="socks5://localhost:9080"'
@@ -82,9 +79,7 @@ export LESSOPEN="| ${LESSPIPE} %s"
 export LESS='-R'
 
 #homebrew bash auto-completion
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-fi
+[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
 #Go Exports
 export PATH=$PATH:$GOPATH/bin
@@ -104,27 +99,16 @@ movtogif(){
 export PATH=$PATH:/Users/ms/Library/Android/sdk/platform-tools
 export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
 
-# Azure cli autocomplete
-source ~/.azure.completion.sh
-
 # Tunnells
 alias ssrq='sshuttle -r admin@sikhnerd.myqnapcloud.com 192.168.1.10'
-alias ssrc='sshuttle -r bs 10.0.0.0/8'
+alias ssrc='sshuttle -r bs 10.142.0.0/16 10.0.0.0/20'
 alias cmse='gdate +%s000'
 
-# Rust Cargo
-source $HOME/.cargo/env
-
+#Fancy Bash
 source /Users/ms/dotfiles/bash/bashline.sh
 
-# The next line updates PATH for the Google Cloud SDK.
-#if [ -f '/Users/ms/google-cloud-sdk/path.bash.inc' ]; then source '/Users/ms/google-cloud-sdk/path.bash.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-#if [ -f '/Users/ms/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/ms/google-cloud-sdk/completion.bash.inc'; fi
-
-# Set Default java to 7
-export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
+# Set Default java to 8
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 
 # GNU Coreutils:
 PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
@@ -132,3 +116,22 @@ MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 # Curl 
 export PATH="/usr/local/opt/curl/bin:$PATH"
+
+# Custom Binaries
+export PATH=$PATH:/Users/ms/bin
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash ] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash ] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash
+
+alias awt='source ~/code/aws-tools/.venv/bin/activate'
+
+# Switch Auth0 Portfolio
+alias sup='/Users/ms/.virtualenvs/scratch/bin/python /Users/ms/code/PycharmProjects/scratch/switch_auth0_portfolio.py'
+
+# GCloud Command Autocompletion
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc'
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc'
