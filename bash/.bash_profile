@@ -101,7 +101,7 @@ export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
 
 # Tunnells
 alias ssrq='sshuttle -r admin@sikhnerd.myqnapcloud.com 192.168.1.10'
-alias ssrc='sshuttle -r bs 10.142.0.0/16 10.0.0.0/20'
+alias ssrc='sshuttle -r bsg 10.142.0.0/16 10.0.0.0/20'
 alias cmse='gdate +%s000'
 
 #Fancy Bash
