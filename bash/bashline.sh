@@ -245,4 +245,4 @@ function bashline_prompt {
 PROMPT_COMMAND='PS1=$(bashline_prompt "$?" "$(if hash __git_ps1 2>/dev/null ; then __git_ps1 ; else echo " ?" ; fi)" || "$PS1")'
 
 # Bash 4.4??
-PS0='\e[0;38;5;250;48;5;236m $(gdate +%H:%M:%S) \e[0;38;5;236;48;5;52;49m\e[0m\n'
+PS0='\e[0;38;5;250;48;5;236m $(date +%H:%M:%S) \e[0;38;5;236;48;5;52;49m\e[0m\n'

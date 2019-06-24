@@ -29,7 +29,6 @@ export HISTSIZE=100000                   # big big history
 export HISTFILESIZE=100000               # big big history
 export HISTTIMEFORMAT='%F %T ' # Add timestamps to every line
 
-
 # Don't try to complete on empty lines
 shopt -s no_empty_cmd_completion
 
@@ -43,10 +42,10 @@ shopt -s dotglob
 
 #Login to vps and reattach to tmux session
 alias vt="reset;ssh -t vc3 'tmux -2 a'"
-alias bs="reset;ssh -t bs 'tmux -2 a'"
+alias bs="reset;ssh -t bsg 'tmux -2 a'"
 
 #most used ls alias
-alias ll="ls -hal"
+alias ll="ls -hal --color=auto"
 
 #ls alias with octal permissions
 alias ols="ls -hal | awk '{k=0;for(i=0;i<=8;i++)k+=((substr(\$1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf(\" %0o \",k);print}'"
@@ -55,18 +54,15 @@ alias ols="ls -hal | awk '{k=0;for(i=0;i<=8;i++)k+=((substr(\$1,i+2,1)~/[rwx]/)*
 alias tmu='tmux -2u a || tmux -2u'
 
 #Pretty ping google dns
-alias pg="/usr/local/bin/pping 8.8.8.8"
+alias pg="pping 8.8.8.8"
 
 #Start Firefox profile manager
-alias ffp="/Applications/Firefox.app/Contents/MacOS/firefox-bin -p"
+#alias ffp="/Applications/Firefox.app/Contents/MacOS/firefox-bin -p"
 
 #Status
 alias gs="git status"
 
-# Start an instance of chrome using a local proxy
-alias chpxy='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir="$HOME/chrome-proxy-profile" --proxy-server="socks5://localhost:9080"'
-
-alias ppv='/opt/puppetlabs/bin/puppet parser validate'
+#alias ppv='/opt/puppetlabs/bin/puppet parser validate'
 ###### Environment Variables/Settings ######
 
 #Vim should always be default
@@ -75,19 +71,20 @@ export VISUAL="vim"
 
 #Make less have colors and syntax highlighting
 LESSPIPE=`which src-hilite-lesspipe.sh`
+LESSPIPE="/usr/share/source-highlight/src-hilite-lesspipe.sh"
 export LESSOPEN="| ${LESSPIPE} %s"
 export LESS='-R'
 
 #homebrew bash auto-completion
-[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+[ -f /etc/profile.d/bash_completion.sh ] && . /etc/profile.d/bash_completion.sh
 
 #Go Exports
-export PATH=$PATH:$GOPATH/bin
-export GOPATH=$HOME/go
-export PATH=$PATH:/usr/local/opt/go/libexec/bin
+#export PATH=$PATH:$GOPATH/bin
+#export GOPATH=$HOME/go
+#export PATH=$PATH:/usr/local/opt/go/libexec/bin
 
 # local rbenv setup
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+#if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # Convert mov file to gif with decent quality
 movtogif(){
@@ -96,42 +93,43 @@ movtogif(){
 }
 
 # add adb to my path
-export PATH=$PATH:/Users/ms/Library/Android/sdk/platform-tools
-export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
+#export PATH=$PATH:/Users/ms/Library/Android/sdk/platform-tools
+#export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
 
 # Tunnells
 alias ssrq='sshuttle -r admin@sikhnerd.myqnapcloud.com 192.168.1.10'
-alias ssrc='sshuttle -r bsg 10.142.0.0/16 10.0.0.0/20'
-alias cmse='gdate +%s000'
+alias ssrc='sshuttle -r bsg 10.142.0.0/16 10.0.0.0/20 10.110.0.0/16'
+alias cht='ssh -D 9080 bsg'
+alias ash='gcloud alpha cloud-shell ssh'
 
-#Fancy Bash
-source /Users/ms/dotfiles/bash/bashline.sh
+# Start an instance of chrome using a local proxy
+#alias chpxy='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir="$HOME/chrome-proxy-profile" --proxy-server="socks5://localhost:9080"'
+alias chpxy='chromium-browser --user-data-dir="/home/ms/temp/l" --proxy-server="socks5://localhost:9080"'
+
+# Current Millisecond Epoch
+alias cmse='date +%s000'
+
+# Fancy Bash
+source /home/ms/dotfiles/bash/bashline.sh
 
 # Set Default java to 8
-export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
-
-# GNU Coreutils:
-PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-
-# Curl 
-export PATH="/usr/local/opt/curl/bin:$PATH"
+#export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 
 # Custom Binaries
-export PATH=$PATH:/Users/ms/bin
-
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash ] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash ] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash
+export PATH=$PATH:/home/ms/bin
 
 alias awt='source ~/code/aws-tools/.venv/bin/activate'
 
 # Switch Auth0 Portfolio
 alias sup='/Users/ms/.virtualenvs/scratch/bin/python /Users/ms/code/PycharmProjects/scratch/switch_auth0_portfolio.py'
 
-# GCloud Command Autocompletion
-source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc'
-source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc'
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/ms/Downloads/google-cloud-sdk-235.0.0-linux-x86_64/google-cloud-sdk/path.bash.inc' ]; then . '/home/ms/Downloads/google-cloud-sdk-235.0.0-linux-x86_64/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/ms/Downloads/google-cloud-sdk-235.0.0-linux-x86_64/google-cloud-sdk/completion.bash.inc' ]; then . '/home/ms/Downloads/google-cloud-sdk-235.0.0-linux-x86_64/google-cloud-sdk/completion.bash.inc'; fi
+
+alias open='xdg-open'
+
+alias ytdl="youtube-dl --external-downloader aria2c --external-downloader-args '-c -j 5 -x 3 -s 5 -k 1M' -f bestvideo+bestaudio"
+alias ytdla="youtube-dl --external-downloader aria2c --external-downloader-args '-c -j 5 -x 3 -s 5 -k 1M' -f bestaudio --extract-audio --audio-format mp3"
