@@ -25,8 +25,8 @@ shopt -s histappend
 
 # History Options
 export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
-export HISTSIZE=100000                   # big big history
-export HISTFILESIZE=100000               # big big history
+export HISTSIZE=-1                   # big big history
+export HISTFILESIZE=-1               # big big history
 export HISTTIMEFORMAT='%F %T ' # Add timestamps to every line
 
 # Don't try to complete on empty lines
@@ -78,13 +78,6 @@ export LESS='-R'
 #homebrew bash auto-completion
 [ -f /etc/profile.d/bash_completion.sh ] && . /etc/profile.d/bash_completion.sh
 
-#Go Exports
-#export PATH=$PATH:$GOPATH/bin
-#export GOPATH=$HOME/go
-#export PATH=$PATH:/usr/local/opt/go/libexec/bin
-
-# local rbenv setup
-#if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # Convert mov file to gif with decent quality
 movtogif(){
@@ -104,13 +97,14 @@ alias ash='gcloud alpha cloud-shell ssh'
 
 # Start an instance of chrome using a local proxy
 #alias chpxy='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir="$HOME/chrome-proxy-profile" --proxy-server="socks5://localhost:9080"'
-alias chpxy='chromium-browser --user-data-dir="/home/ms/temp/l" --proxy-server="socks5://localhost:9080"'
+alias chpxy='chromium --user-data-dir="/home/ms/temp/l" --proxy-server="socks5://localhost:9080"'
 
 # Current Millisecond Epoch
 alias cmse='date +%s000'
 
 # Fancy Bash
-source /home/ms/dotfiles/bash/bashline.sh
+#source /home/ms/dotfiles/bash/bashline.sh
+source <("/home/ms/bin/starship" init bash --print-full-init)
 
 # Set Default java to 8
 #export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
@@ -118,10 +112,6 @@ source /home/ms/dotfiles/bash/bashline.sh
 # Custom Binaries
 export PATH=$PATH:/home/ms/bin
 
-alias awt='source ~/code/aws-tools/.venv/bin/activate'
-
-# Switch Auth0 Portfolio
-alias sup='/Users/ms/.virtualenvs/scratch/bin/python /Users/ms/code/PycharmProjects/scratch/switch_auth0_portfolio.py'
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/ms/Downloads/google-cloud-sdk-235.0.0-linux-x86_64/google-cloud-sdk/path.bash.inc' ]; then . '/home/ms/Downloads/google-cloud-sdk-235.0.0-linux-x86_64/google-cloud-sdk/path.bash.inc'; fi
@@ -133,3 +123,13 @@ alias open='xdg-open'
 
 alias ytdl="youtube-dl --external-downloader aria2c --external-downloader-args '-c -j 5 -x 3 -s 5 -k 1M' -f bestvideo+bestaudio"
 alias ytdla="youtube-dl --external-downloader aria2c --external-downloader-args '-c -j 5 -x 3 -s 5 -k 1M' -f bestaudio --extract-audio --audio-format mp3"
+
+# Install Ruby Gems to ~/gems
+export GEM_HOME="$HOME/gems"
+export PATH="$HOME/gems/bin:$PATH"
+
+alias intel='system76-power graphics intel'
+alias nvidia='system76-power graphics nvidia'
+alias perf='system76-power profile performance'
+alias balanced='system76-power profile balanced'
+alias battery='system76-power profile battery'
