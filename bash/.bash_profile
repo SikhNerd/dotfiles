@@ -104,7 +104,8 @@ alias cmse='date +%s000'
 
 # Fancy Bash
 #source /home/ms/dotfiles/bash/bashline.sh
-source <("/home/ms/bin/starship" init bash --print-full-init)
+#source <("/home/ms/bin/starship" init bash --print-full-init)
+eval "$(starship init bash)"
 
 # Set Default java to 8
 #export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
@@ -133,3 +134,13 @@ alias nvidia='system76-power graphics nvidia'
 alias perf='system76-power profile performance'
 alias balanced='system76-power profile balanced'
 alias battery='system76-power profile battery'
+
+alias cam0='gphoto2 --auto-detect'
+alias cam1='sudo modprobe v4l2loopback exclusive_caps=1 max_buffers=2 devices=2 video_nr=10,9 card_label="Sony A6300","OBS"'
+alias cam2='gphoto2 --stdout --capture-movie | ffmpeg -hwaccel nvdec -c:v mjpeg_cuvid -i - -vcodec rawvideo -pix_fmt yuv420p -threads 0 -f v4l2 /dev/video10'
+
+alias mkvenv='python3 -m venv .venv'
+alias svenv='source .venv/bin/activate'
+alias svba='source .venv/bin/activate'
+
+alias backup='rclone sync --progress --copy-links --multi-thread-streams 4 --transfers 34 /home/ms qnap:/share/CACHEDEV2_DATA/linuxbackups/backup/'
